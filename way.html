@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Example Google Maps</title>
+<script
+src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false">
+</script>
+
+<script>
+var what1 = true;
+var what2 = true;
+
+var way1=new google.maps.LatLng(52.395715,4.888916);
+var way2=new google.maps.LatLng(44.818919, -58.613791);
+var way3=new google.maps.LatLng(50.438315, 0.272929);
+var way4=new google.maps.LatLng(58.339817, 9.677226);
+
+
+
+var way21=new google.maps.LatLng(52.395715,4.888916);
+var way22=new google.maps.LatLng(56.639659, 9.149881);
+var way23=new google.maps.LatLng(47.496845, 11.698710);
+var way24=new google.maps.LatLng(41.122873, 29.057108);
+
+function initialize()
+{
+
+var mapNokta = {
+  center:way1,
+  zoom:4,
+  mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+  
+
+
+var map=new google.maps.Map(document.getElementById("googleMap"),mapNokta);
+
+var myTrip=[way2,way3,way4];
+var Ciz1=new google.maps.Polyline({
+  path:myTrip,
+  strokeColor:"#000000",
+  strokeOpacity:0.8,
+  strokeWeight:5
+  });
+
+
+
+
+
+
+var mapNokta = {
+  center:way21,
+  zoom:4,
+  mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+  
+
+
+var map=new google.maps.Map(document.getElementById("googleMap"),mapNokta);
+
+var myTrip=[way22,way23,way24];
+var Ciz2=new google.maps.Polyline({
+  path:myTrip,
+  strokeColor:"#0000FF",
+  strokeOpacity:0.8,
+  strokeWeight:8
+  });
+
+if(what1!=false)
+  Ciz1.setMap(map);
+if(what2!=false)
+  Ciz2.setMap(map);
+
+}
+
+function validate(val)
+{
+
+    if(val=="black")
+    {
+      if(what1==false)
+        what1=true;
+      else
+        what1=false;
+    }
+    if(val=="blue")
+    {
+      if(what2==false)
+        what2=true;
+      else
+        what2=false;
+    }
+
+    initialize();    
+
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
+</script>
+</head>
+
+<body>
+<div id="googleMap" style="width:100%;height:480px;"></div>
+<br><br>
+
+<input id="remember" name="remember" type="checkbox" checked="checked" onclick="validate('black')" />BLACK<br>
+<input id="remember" name="remember" type="checkbox" checked="checked" onclick="validate('blue')" />BLUE
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Example Google Maps</title>
+<script
+src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false">
+</script>
+
+
+<script>
+
+var myCenter=new google.maps.LatLng(32.297257, -64.771427);
+
+
+var marker=new google.maps.Marker({
+  position:myCenter,
+  icon:'marker.png'
+  });
+
+
+var hi11=new google.maps.LatLng(25.984875, -80.329560);
+var bermuda12=new google.maps.LatLng(25.708031, -80.505341);
+var bermuda13=new google.maps.LatLng(18.466235, -65.651825);
+var bermuda14=new google.maps.LatLng(32.126468, -65.080536);
+
+var hi21=new google.maps.LatLng(25.984875, -80.329560);
+var bermuda22=new google.maps.LatLng(18.449093, -95.012325);
+var bermuda23=new google.maps.LatLng(27.538198, -81.257442);
+var bermuda24=new google.maps.LatLng(27.538198, -81.257442);
+
+function initialize()
+{
+
+
+//marker
+var mapProp = {
+  center:myCenter,
+  zoom:5,
+  mapTypeId:google.maps.MapTypeId.ROADMAP,
+  };
+
+var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+  google.maps.event.addListener(marker, 'click', function() {
+    map.setZoom(10);
+    map.setCenter(marker.getPosition());
+
+  }); 
+
+var infowindow1 = new google.maps.InfoWindow({
+  content:" <div style='color:#F30;'><b><u>BERMUDA</u></b></div>"
+  });
+
+//marker-finish
+
+
+var mapNokta1= {
+  center:hi11,
+  zoom:4,
+  mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  
+var map=new google.maps.Map(document.getElementById("googleMap"),mapNokta1);
+
+var myTrip=[bermuda12,bermuda13,bermuda14,bermuda12];
+var Ciz1=new google.maps.Polygon({
+  path:myTrip,
+  strokeColor:"#000000",
+  strokeOpacity:0.7,
+  strokeWeight:5,
+  fillColor:"#000",
+  title:"BERMUDA",
+  fillOpacity:0.5
+  });
+
+
+
+var mapNokta2= {
+  center:hi21,
+  zoom:4,
+  mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  
+var map=new google.maps.Map(document.getElementById("googleMap"),mapNokta2);
+
+var myTrip=[bermuda22,bermuda23,bermuda24,bermuda22];
+var Ciz2=new google.maps.Polygon({
+  path:myTrip,
+  strokeColor:"#0000DD",
+  strokeOpacity:0.8,
+  strokeWeight:5,
+  fillColor:"#CCC",
+  fillOpacity:0.5
+  });
+
+
+
+marker.setMap(map);
+Ciz1.setMap(map);
+Ciz2.setMap(map);
+
+infowindow1.open(map,marker);
+
+
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+
+
+
+</head>
+
+<body>
+<div id="googleMap" style="width:100%;height:480px;"></div>
+</body>
+</html>
